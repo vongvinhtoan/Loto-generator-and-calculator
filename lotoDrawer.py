@@ -2,6 +2,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from lotoSheet import LotoSheet
+import os
 import random
 
 def HEX_to_RGB(hex: str) -> tuple[int, int, int]:
@@ -30,6 +31,9 @@ class LotoDrawer:
                 _frame = _frame.convert("RGBA")
             merged.paste(_frame, (0, 0), _frame)
 
+        result_directory = os.path.dirname(result_dir)
+        if not os.path.exists(result_directory):
+            os.makedirs(result_directory)
         merged.save(result_dir)
 
     def create_new_frame(self, background: Image, thickness: int, margin_top: int = 0, margin_left: int = 0, margin_right: int = 0, margin_bottom: int = 0, third_spacing: int = 0, edge_color: tuple[int, int, int, int] = (0, 0, 255, 255)) -> Image:
