@@ -11,31 +11,18 @@ def HEX_to_RGB(hex: str) -> tuple[int, int, int]:
     return tuple(int(hex[i:i+hlen//3], 16) for i in range(0, hlen, hlen//3))
 
 class LotoDrawer:
-    def draw(self, result_dir: str, background_dir: str, frame_dir: str, loto_sheet: LotoSheet, font_dir: str, item_dir_list: list[str] = []):
-        background = Image.open(background_dir)
-        frame = self.create_new_frame(background, thickness=0, margin_top=552, margin_bottom=84, margin_left=120, margin_right=120, third_spacing=152, edge_color=(255, 255, 255, 255))
+    def draw(self, result_dir: str, background: Image.Image, frame: Image.Image, loto_sheet: LotoSheet, font: ImageFont, item_list: list[Image.Image] = []):
+        _frame = self.create_new_frame(background, thickness=0, margin_top=552, margin_bottom=84, margin_left=120, margin_right=120, third_spacing=152, edge_color=(255, 255, 255, 255))
+        numbers = self.create_board_image(_frame.size, self.get_cell_rectangles(_frame), loto_sheet, font, item_list)
 
-        font = ImageFont.truetype(font_dir, 75)
-        item_list = [
-            Image.open(item_dir) for item_dir in item_dir_list
-        ]
-        numbers = self.create_board_image(frame.size, self.get_cell_rectangles(frame), loto_sheet, font, item_list)
-
-        merged = Image.new('RGBA', frame.size, (0, 0, 0, 0))
+        merged = Image.new('RGBA', _frame.size, (0, 0, 0, 0))
         merged.paste(background, (0, 0))
         merged.paste(numbers, (0, 0), numbers)
 
-        if not frame_dir == None:
-            _frame = Image.open(frame_dir)
-            if not _frame.mode == "RGBA":
-                _frame = _frame.convert("RGBA")
-            merged.paste(_frame, (0, 0), _frame)
-
-        result_directory = os.path.dirname(result_dir)
-        if not os.path.exists(result_directory):
-            os.makedirs(result_directory)
-        if not os.path.exists(result_dir):
-            os.touch(result_dir)
+        if not frame.mode == "RGBA":
+            frame = frame.convert("RGBA")
+        merged.paste(frame, (0, 0), frame)
+        
         merged.save(result_dir)
 
     def create_new_frame(self, background: Image, thickness: int, margin_top: int = 0, margin_left: int = 0, margin_right: int = 0, margin_bottom: int = 0, third_spacing: int = 0, edge_color: tuple[int, int, int, int] = (0, 0, 255, 255)) -> Image:

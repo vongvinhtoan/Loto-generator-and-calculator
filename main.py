@@ -1,10 +1,25 @@
 from lotoDrawer import LotoDrawer
 from lotoGrader import LotoGrader
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 import lotoSheet
 import random
 
 def __main__():
     random.seed(22125108)
+
+    font = ImageFont.truetype("fonts/Gotham Regular.otf", 75)
+    item_list = [
+        Image.open(item_dir) for item_dir in [
+            "items/item 1.png",
+            "items/item 2.png",
+            "items/item 3.png",
+            "items/item 4.png"
+        ]
+    ]
+    frame = Image.open("frames/frame.png")
+    background = Image.open("backgrounds/lotov2.png")
 
     drawer = LotoDrawer()
     for i in range(0, 1):
@@ -12,16 +27,11 @@ def __main__():
         result_dir = f"results/result{i}.png"
         drawer.draw(
             result_dir=result_dir,
-            background_dir="backgrounds/lotov2.png",
-            frame_dir="frames/frame.png",
+            background=background,
+            frame=frame,
             loto_sheet=lotoSheet.create_random_lotoSheet(),
-            font_dir="fonts/Gotham Regular.otf",
-            item_dir_list=[
-                "items/item 1.png",
-                "items/item 2.png",
-                "items/item 3.png",
-                "items/item 4.png"
-            ]
+            font=font,
+            item_list=item_list
         )
 
     # grader = LotoGrader([lotoSheet.create_random_lotoSheet() for _ in range(0, 10)])
