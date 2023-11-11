@@ -20,6 +20,7 @@ def __main__():
     ]
     frame = Image.open("frames/frame.png")
     background = Image.open("backgrounds/lotov2.png")
+    loto_sheet = lotoSheet.create_distinct_random_sheet(1)[0]
 
     drawer = LotoDrawer()
     for i in range(0, 1):

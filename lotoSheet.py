@@ -122,3 +122,11 @@ def create_random_lotoSheet() -> LotoSheet:
     board = [[board[j][i] for j in range(0, 9)] for i in range(0, 9)]
     board = [[int(x) for x in board[i] if x != 'X'] for i in range(0, len(board))]
     return LotoSheet(board)
+
+def create_distinct_random_sheet(count: int) -> list[LotoSheet]:
+    result = []
+    while len(result) < count:
+        sheet = create_random_lotoSheet()
+        if sheet not in result:
+            result.append(sheet)
+    return result
