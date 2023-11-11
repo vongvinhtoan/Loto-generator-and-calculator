@@ -6,7 +6,7 @@ import random
 class LotoGrader:
     def __init__(self, loto_sheets: list[LotoSheet]) -> None:
         self.loto_sheets = loto_sheets
-        print(len(self.loto_sheets))
+        print(f"len(self.loto_sheets) = {len(self.loto_sheets)}")
         self.loto_statistics = LotoStatistics([])
 
     def grade(self, num_call: int) -> None:
