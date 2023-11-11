@@ -19,8 +19,6 @@ class LotoDrawer:
         merged.paste(background, (0, 0))
         merged.paste(numbers, (0, 0), numbers)
 
-        if os.path.exists(result_dir):
-
         if not frame.mode == "RGBA":
             frame = frame.convert("RGBA")
         merged.paste(frame, (0, 0), frame)
