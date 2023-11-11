@@ -11,7 +11,7 @@ class LotoGrader:
 
     def grade(self, num_call: int) -> None:
         for i in range(0, num_call):
-            if (i+1) % (num_call//100 + 1) == 0:
+            if (i+1) % (num_call//10) == 0:
                 print(f"Calling {i + 1}/{num_call}")
             self.call()
 
