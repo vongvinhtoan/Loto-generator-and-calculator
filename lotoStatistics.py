@@ -72,7 +72,7 @@ class LotoStatistics:
         sub_plt_calling_numbers.set_xticks(x_ticks)
         sub_plt_calling_numbers.get_xticklabels()[len(x_ticks) - 1].set_color('r')
         sub_plt_calling_numbers.get_xticklabels()[len(x_ticks) - 1].set_fontweight('bold')
-        sub_plt_calling_numbers.set_title("Thời gian chơi")
+        sub_plt_calling_numbers.set_title("Thời gian chơi còn lại")
         sub_plt_calling_numbers.set_xlabel("Số lần gọi")
         sub_plt_calling_numbers.set_ylabel("Tần suất")
 

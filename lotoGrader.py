@@ -6,13 +6,12 @@ import random
 class LotoGrader:
     def __init__(self, loto_sheets: list[LotoSheet]) -> None:
         self.loto_sheets = loto_sheets
-        print(f"len(self.loto_sheets) = {len(self.loto_sheets)}")
         self.loto_statistics = LotoStatistics([])
 
     def grade(self, num_call: int, called_seq: list[int]) -> None:
         for i in range(0, num_call):
             if (i+1) % (num_call//10) == 0:
-                print(f"Calling {i + 1}/{num_call}")
+                print(f"Processing {i + 1}/{num_call}")
             self.call(called_seq)
 
         self.loto_statistics.draw_all()
