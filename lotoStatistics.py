@@ -89,9 +89,11 @@ class LotoStatistics:
         winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
         winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
         winning_number_sum_freq = sum(winning_number_y_axis)
-        winning_number_y_axis = [y / winning_number_sum_freq for y in winning_number_y_axis]
+        winning_number_y_axis = [y / winning_number_sum_freq * 100 for y in winning_number_y_axis]
+
+        print("Xác suất số lượng người trúng")
         for i in range(0, len(winning_number_y_axis)):
-            print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}")
+            print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
         
         # add more space between subplots
         plt.subplots_adjust(hspace=1.0)
