@@ -26,6 +26,8 @@ class LotoGrader:
     def call(self, called_seq: [int]) -> None:
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
+            for loto_number in called_seq:
+                loto_sheet.mark(loto_number)
 
         called_numbers = called_seq.copy()
         while True:
