@@ -13,23 +13,6 @@ class LotoStatistics:
     def add_item(self, item: LotoStatisticsItem) -> None:
         self.items.append(item)
 
-    def draw_calling_numbers(self) -> None:
-        calling_numbers = [len(item.called_sequence) for item in self.items]
-        plt.hist(calling_numbers, bins=range(0, 100, 5))
-        plt.title("Calling Numbers")
-        plt.xlabel("Number of Calling Numbers")
-        plt.ylabel("Frequency")
-        plt.show()
-
-    def draw_winning_numbers(self) -> None:
-        # plt.hist(self.winning_numbers, bins=range(0, 100, 5))
-        winning_numbers = [len(item.winners) for item in self.items]
-        plt.hist(winning_numbers, bins=range(0, 100, 5))
-        plt.title("Winning Numbers")
-        plt.xlabel("Number of Winning Numbers")
-        plt.ylabel("Frequency")
-        plt.show()
-
     def draw_all(self) -> None:
         calling_numbers = [len(item.called_sequence) for item in self.items]
         winning_numbers = [len(item.winners) for item in self.items]
@@ -102,6 +85,13 @@ class LotoStatistics:
         sub_plt_winning_times.set_title("Người thắng")
         sub_plt_winning_times.set_xlabel("Số thứ tự người thắng")
         sub_plt_winning_times.set_ylabel("Số lần thắng")
+
+        winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
+        winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
+        winning_number_sum_freq = sum(winning_number_y_axis)
+        winning_number_y_axis = [y / winning_number_sum_freq for y in winning_number_y_axis]
+        for i in range(0, len(winning_number_y_axis)):
+            print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}")
         
         # add more space between subplots
         plt.subplots_adjust(hspace=1.0)
