@@ -9,11 +9,11 @@ class LotoGrader:
         print(f"len(self.loto_sheets) = {len(self.loto_sheets)}")
         self.loto_statistics = LotoStatistics([])
 
-    def grade(self, num_call: int) -> None:
+    def grade(self, num_call: int, called_seq: [int]) -> None:
         for i in range(0, num_call):
             if (i+1) % (num_call//10) == 0:
                 print(f"Calling {i + 1}/{num_call}")
-            self.call()
+            self.call(called_seq)
 
         self.loto_statistics.draw_all()
 
@@ -23,11 +23,11 @@ class LotoGrader:
             if called_number not in called_numbers:
                 return called_number
 
-    def call(self) -> None:
+    def call(self, called_seq: [int]) -> None:
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
 
-        called_numbers = []
+        called_numbers = called_seq.copy()
         while True:
             called_number = self.get_next_called_number(called_numbers)
             called_numbers.append(called_number)
