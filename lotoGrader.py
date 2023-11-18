@@ -9,6 +9,20 @@ class LotoGrader:
         self.loto_statistics = LotoStatistics([])
 
     def grade(self, num_call: int, called_seq: list[int]) -> None:
+        winners = []
+        for loto_sheet in self.loto_sheets:
+            loto_sheet.reset()
+            for loto_number in called_seq:
+                loto_sheet.mark(loto_number)
+            if loto_sheet.isComplete():
+                winners.append(loto_sheet)
+
+        if len(winners) > 0:
+            print("Winners:")
+            for winner in winners:
+                print(winner.id())
+            return
+
         for i in range(0, num_call):
             if (i+1) % (num_call//10) == 0:
                 print(f"Processing {i + 1}/{num_call}")

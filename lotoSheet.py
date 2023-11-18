@@ -8,6 +8,8 @@ class LotoSheet:
         self.count = [5] * 9
         self.marked = [[False] * 5 for _ in range(0, 9)]
 
+    def id(self) -> str:
+        return "".join([str(x) for x in self.sheet_array[0]])
 
     def isMarked(self, x: int) -> bool:
         pos = self.positions[x]
