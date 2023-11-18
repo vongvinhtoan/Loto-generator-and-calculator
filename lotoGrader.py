@@ -14,7 +14,7 @@ class LotoGrader:
         for loto_number in called_seq:
             for loto_sheet in self.loto_sheets:
                 loto_sheet.mark(loto_number)
-            winners = [i for i, loto_sheet in enumerate(self.loto_sheets) if loto_sheet.isComplete()]
+            winners = [loto_sheet for loto_sheet in self.loto_sheets if loto_sheet.isComplete()]
             
             if len(winners) > 0:
                 print(f"Found winner(s) at {called_seq.index(loto_number) + 1}th call, with number {loto_number}")
