@@ -9,13 +9,20 @@ class LotoGrader:
         self.loto_statistics = LotoStatistics([])
 
     def grade(self, num_call: int, called_seq: list[int]) -> None:
-        winners = []
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
-            for loto_number in called_seq:
+        for loto_number in called_seq:
+            for loto_sheet in self.loto_sheets:
                 loto_sheet.mark(loto_number)
-            if loto_sheet.isComplete():
-                winners.append(loto_sheet)
+            winners = [i for i, loto_sheet in enumerate(self.loto_sheets) if loto_sheet.isComplete()]
+            
+            if len(winners) > 0:
+                print(f"Found winner(s) at {called_seq.index(loto_number) + 1}th call, with number {loto_number}")
+                print(f"No. of winners: {len(winners)}")
+                print("Winners:")
+                for winner in winners:
+                    print(winner.id())
+                return
 
         if len(winners) > 0:
             print("Winners:")
