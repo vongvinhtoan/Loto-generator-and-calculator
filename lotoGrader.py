@@ -65,6 +65,6 @@ class LotoGrader:
         loto_statistic_item.called_sequence = [x for x in called_numbers if not x in called_seq]
         for i, loto_sheet in enumerate(self.loto_sheets):
             if loto_sheet.isComplete():
-                loto_statistic_item.winners.append(loto_sheet.id())
+                loto_statistic_item.winners.append(i)
 
         self.loto_statistics.add_item(loto_statistic_item)

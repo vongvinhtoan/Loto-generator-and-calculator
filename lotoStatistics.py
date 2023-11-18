@@ -76,24 +76,24 @@ class LotoStatistics:
         sub_plt_winning_numbers.set_xlabel("Số lượng người trúng")
         sub_plt_winning_numbers.set_ylabel("Tần suất")
 
-        # sub_plt_winning_times = plt.subplot(3, 1, 3)
-        # sub_plt_winning_times.bar(winning_times_x_axis, winning_times, width=0.8)
-        # sub_plt_winning_times.set_xticks(range(0, len(winning_times), 1))
-        # sub_plt_winning_times.xaxis.set_tick_params(rotation=-45)
-        # # make xaxis labels smaller so that they fit in the figure
-        # sub_plt_winning_times.tick_params(axis='x', which='major', labelsize=6)
-        # sub_plt_winning_times.set_title("Người thắng")
-        # sub_plt_winning_times.set_xlabel("Số thứ tự người thắng")
-        # sub_plt_winning_times.set_ylabel("Số lần thắng")
+        sub_plt_winning_times = plt.subplot(3, 1, 3)
+        sub_plt_winning_times.bar(winning_times_x_axis, winning_times, width=0.8)
+        sub_plt_winning_times.set_xticks(range(0, len(winning_times), 1))
+        sub_plt_winning_times.xaxis.set_tick_params(rotation=-45)
+        # make xaxis labels smaller so that they fit in the figure
+        sub_plt_winning_times.tick_params(axis='x', which='major', labelsize=6)
+        sub_plt_winning_times.set_title("Người thắng")
+        sub_plt_winning_times.set_xlabel("Số thứ tự người thắng")
+        sub_plt_winning_times.set_ylabel("Số lần thắng")
 
-        # winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
-        # winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
-        # winning_number_sum_freq = sum(winning_number_y_axis)
-        # winning_number_y_axis = [y / winning_number_sum_freq * 100 for y in winning_number_y_axis]
+        winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
+        winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
+        winning_number_sum_freq = sum(winning_number_y_axis)
+        winning_number_y_axis = [y / winning_number_sum_freq * 100 for y in winning_number_y_axis]
 
-        # print("Xác suất số lượng người trúng")
-        # for i in range(0, len(winning_number_y_axis)):
-        #     print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
+        print("Xác suất số lượng người trúng")
+        for i in range(0, len(winning_number_y_axis)):
+            print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
         
         # add more space between subplots
         plt.subplots_adjust(hspace=1.0)
