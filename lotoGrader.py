@@ -11,6 +11,7 @@ class LotoGrader:
     def grade(self, num_call: int, called_seq: list[int]) -> None:
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
+        winners = []
         for loto_number in called_seq:
             for loto_sheet in self.loto_sheets:
                 loto_sheet.mark(loto_number)
