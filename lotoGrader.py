@@ -12,6 +12,7 @@ class LotoGrader:
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
         winners = []
+        winned = False
         for loto_number in called_seq:
             for loto_sheet in self.loto_sheets:
                 loto_sheet.mark(loto_number)
@@ -23,7 +24,10 @@ class LotoGrader:
                 print("Winners:")
                 for winner in winners:
                     print(winner.id())
-                return
+                winned = True
+
+        if winned:
+            return
 
         if len(winners) > 0:
             print("Winners:")
