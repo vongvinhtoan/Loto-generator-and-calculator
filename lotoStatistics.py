@@ -13,7 +13,7 @@ class LotoStatistics:
     def add_item(self, item: LotoStatisticsItem) -> None:
         self.items.append(item)
 
-    def draw_all(self) -> None:
+    def draw_all(self, is_show_figure: bool = True) -> None:
         calling_numbers = [len(item.called_sequence) for item in self.items]
         winning_numbers = [len(item.winners) for item in self.items]
         winning_times = [0] * (max([max(item.winners) for item in self.items]) + 1)
@@ -86,14 +86,22 @@ class LotoStatistics:
         sub_plt_winning_times.set_xlabel("Số thứ tự người thắng")
         sub_plt_winning_times.set_ylabel("Số lần thắng")
 
-        winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
-        winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
-        winning_number_sum_freq = sum(winning_number_y_axis)
-        winning_number_y_axis = [y / winning_number_sum_freq * 100 for y in winning_number_y_axis]
 
-        print("Xác suất số lượng người trúng")
-        for i in range(0, len(winning_number_y_axis)):
-            print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
+        if is_show_figure:
+            winning_number_x_axis = [i for i in range(winning_numbers_left, winning_numbers_right + 1)]
+            winning_number_y_axis = winning_numbers_freq[winning_numbers_left:winning_numbers_right + 1]
+            winning_number_sum_freq = sum(winning_number_y_axis)
+            winning_number_y_axis = [y / winning_number_sum_freq * 100 for y in winning_number_y_axis]
+            
+            print("Xác suất số lượng người trúng")
+            for i in range(0, len(winning_number_y_axis)):
+                print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
+            
+            winning_times_sum = sum(winning_times)
+            winning_times = [y / winning_times_sum * 100 for y in winning_times]
+            print("Xác suất số lần thắng")
+            for i in range(0, len(winning_times)):
+                print(f"{winning_times_x_axis[i]}: {winning_times[i]}%")
         
         # add more space between subplots
         plt.subplots_adjust(hspace=1.0)

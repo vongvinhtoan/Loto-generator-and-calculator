@@ -8,7 +8,7 @@ class LotoGrader:
         self.loto_sheets = loto_sheets
         self.loto_statistics = LotoStatistics([])
 
-    def grade(self, num_call: int, called_seq: list[int]) -> None:
+    def grade(self, num_call: int, called_seq: list[int], is_show_figure: bool = True) -> None:
         for loto_sheet in self.loto_sheets:
             loto_sheet.reset()
         winners = []
@@ -36,7 +36,7 @@ class LotoGrader:
                 print(f"Processing {i + 1}/{num_call}")
             self.call(called_seq)
 
-        self.loto_statistics.draw_all()
+        self.loto_statistics.draw_all(is_show_figure)
 
     def get_next_called_number(self, called_numbers: list[int]) -> int:
         while True:
