@@ -97,11 +97,11 @@ class LotoStatistics:
             for i in range(0, len(winning_number_y_axis)):
                 print(f"{winning_number_x_axis[i]}: {winning_number_y_axis[i]}%")
             
-            winning_times_sum = sum(winning_times)
-            winning_times = [y / winning_times_sum * 100 for y in winning_times]
-            print("Xác suất số lần thắng")
-            for i in range(0, len(winning_times)):
-                print(f"{winning_times_x_axis[i]}: {winning_times[i]}%")
+            # winning_times_sum = sum(winning_times)
+            # winning_times = [y / winning_times_sum * 100 for y in winning_times]
+            # print("Xác suất số lần thắng")
+            # for i in range(0, len(winning_times)):
+            #     print(f"{winning_times_x_axis[i]}: {winning_times[i]}%")
         
         # add more space between subplots
         plt.subplots_adjust(hspace=1.0)
